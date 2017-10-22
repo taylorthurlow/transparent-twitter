@@ -10,6 +10,23 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require normalize-rails
  *= require_tree .
  *= require_self
  */
+
+html, body {
+	height: 100%;
+}
+
+#content {
+	width: 100%;
+	min-height: 100%;
+	background-color: #bbb;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.tweet-input {
+}

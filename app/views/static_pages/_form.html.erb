@@ -1,0 +1,12 @@
+<div class="form-medium">
+  <%= form_tag(analyze_tweet_path) do |f| %>
+    <div class="field">
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
