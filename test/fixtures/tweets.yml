@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+tweet_one:
+  url: http://example.com/
+  text: Lorem ipsum dolor amet.
+  classification: 0
+
+tweet_two:
+  url: http://example.com/
+  text: Ninety-nine bottles of beer on the wall, ninety-nine botles of beer. Take one down, pass it around, ninety-nine bottes of beer on the wall.
+  classification: 0

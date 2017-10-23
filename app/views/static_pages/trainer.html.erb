@@ -1,0 +1,13 @@
+<div class="trainer fullscreen">
+  <% if @tweet.present? %>
+    <p><%= @tweet.text %></p>
+    <div class="trainer-options">
+      <%= link_to 'delete', @tweet, method: :delete %>
+      <%= link_to 'news', tweet_path(@tweet, tweet: {classification: 'news'}), method: :put %>
+      <%= link_to 'opinion', tweet_path(@tweet, tweet: {classification: 'opinion'}), method: :put %>
+      <%= link_to 'neither', tweet_path(@tweet, tweet: {classification: 'neither'}), method: :put %>
+    </div>
+  <% else %>
+    <p>You're out of tweets.</p>
+  <% end %>
+</div>

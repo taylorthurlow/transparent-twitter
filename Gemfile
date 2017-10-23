@@ -26,10 +26,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders'
 # css normalization
 gem 'normalize-rails'
+# fake data for seeds
+gem 'faker', git: 'https://github.com/stympy/faker'
+# Cool font icons
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # Make tests auto-run when changing files
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'guard-livereload', '2.3.0', require: false
 end
 
 group :development do

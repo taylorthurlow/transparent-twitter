@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+50.times do
+  Tweet.create!({
+    url: 'http://example.com/',
+    text: Faker::RickAndMorty.quote,
+    classification: 0
+  })
+end
