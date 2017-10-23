@@ -63,3 +63,6 @@ group :development do
   gem 'rails_best_practices'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
