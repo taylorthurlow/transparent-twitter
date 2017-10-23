@@ -16,5 +16,8 @@ class Tweet < ActiveRecord::Base
       user_picture_url: tweet.user.profile_image_uri.to_s,
       classification: 0
     })
+
+  rescue ActiveRecord::RecordInvalid => exception
+    # doesn't matter, we'll just skip it
   end
 end
