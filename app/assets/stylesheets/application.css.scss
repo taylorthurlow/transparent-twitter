@@ -32,6 +32,29 @@ a {
   }
 }
 
+nav {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+
+  ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    background-color: #bbb;
+
+    li {
+      display: inline-block;
+      margin: 5px 15px;
+
+      a, a:visited {
+        color: black;
+      }
+    }
+  }
+}
+
 #content {
 	// background-color: #bbb;
 }

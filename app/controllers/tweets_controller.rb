@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all.sort
+    @tweets = Tweet.all.unclassified.sort
     respond_with @tweets
   end
 
