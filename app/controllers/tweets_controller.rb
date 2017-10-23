@@ -21,7 +21,7 @@ class TweetsController < ApplicationController
   # GET /create_training_data.json
   def create_training_data
     client = twitter_init
-    search = client.search('', lang: 'en', geocode: '34.057565,-117.820741,10mi').take(10)
+    search = client.search('', lang: 'en', geocode: '34.057565,-117.820741,10mi', tweet_mode: 'extended').take(10)
     search.each {|t| Tweet.batch_factory(t)}
     redirect_to tweets_url
   end
@@ -37,8 +37,8 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1.json
   def destroy
     @tweet.destroy
-    respond_with @tweet, location: trainer_ur
-l  end
+    respond_with @tweet, location: trainer_url
+  end
 
   private
 
