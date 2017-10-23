@@ -42,6 +42,8 @@ group :development, :test do
   gem 'guard'
   gem 'guard-minitest'
   gem 'guard-livereload', '2.3.0', require: false
+  # dotenv configuration
+  gem 'dotenv-rails'
 end
 
 group :development do

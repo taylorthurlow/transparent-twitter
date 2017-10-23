@@ -69,6 +69,10 @@ GEM
     debug_inspector (0.0.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -271,6 +275,7 @@ DEPENDENCIES
   bullet (<= 4.5.0)
   byebug
   coffee-rails (~> 4.1.0)
+  dotenv-rails
   faker!
   font-awesome-rails
   guard

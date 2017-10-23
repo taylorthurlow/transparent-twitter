@@ -16,4 +16,4 @@
 .byebug_history
 *.sublime*
 bower_components
-/config/secrets.yml
+/.env
