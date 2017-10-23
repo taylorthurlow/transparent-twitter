@@ -8,8 +8,9 @@ class Tweet < ActiveRecord::Base
 
   def self.batch_factory(tweet)
     json = tweet.as_json
+    retweeted = !json['retweeted_status'].nil?
 
-    unless tweet.possibly_sensitive? # filter out tweets with nsfw links
+    unless tweet.possibly_sensitive? or retweeted
       return Tweet.create!({
         tweet_id: tweet.id,
         tweet_url: tweet.uri.to_s,
