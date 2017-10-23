@@ -2,21 +2,20 @@
   <table class="tweets_table">
     <thead>
       <tr>
+        <th>User</th>
         <th>Text</th>
         <th>Classification</th>
-        <th colspan="4"></th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <% tweets.each do |tweet| %>
         <tr>
-          <td><%= tweet.text %></td>
+          <td><%= tweet.user_handle %></td>
+          <td><%= tweet.tweet_text %></td>
           <td><%= tweet.classification %></td>
           <td><%= link_to '', tweet, method: :delete, class: 'fa fa-trash' %></td>
-          <td><%= link_to '', tweet_path(tweet, tweet: {classification: 'news'}), method: :put, class: 'fa fa-newspaper-o' %></td>
-          <td><%= link_to '', tweet_path(tweet, tweet: {classification: 'opinion'}), method: :put, class: 'fa fa-commenting-o' %></td>
-          <td><%= link_to '', tweet_path(tweet, tweet: {classification: 'neither'}), method: :put, class: 'fa fa-asterisk' %></td>
         </tr>
       <% end %>
     </tbody>

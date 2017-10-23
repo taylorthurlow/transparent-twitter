@@ -1,11 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 tweet_one:
-  url: http://example.com/
-  text: Lorem ipsum dolor amet.
+  tweet_id: 1
+  tweet_url: http://example.com/
+  tweet_text: Lorem ipsum stupid shit goes here
+  user_name: Some Guy
+  user_handle: some_guy
+  user_picture_url: http://placehold.it/48x48
   classification: 0
 
 tweet_two:
-  url: http://example.com/
-  text: Ninety-nine bottles of beer on the wall, ninety-nine botles of beer. Take one down, pass it around, ninety-nine bottes of beer on the wall.
+  tweet_id: 1
+  tweet_url: http://example.com/
+  tweet_text: Lorem ipsum stupid shit goes here
+  user_name: Some Guy
+  user_handle: some_guy
+  user_picture_url: http://placehold.it/48x48
   classification: 0

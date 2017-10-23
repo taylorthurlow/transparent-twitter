@@ -17,11 +17,15 @@ ActiveRecord::Schema.define(version: 20171022233624) do
   enable_extension "plpgsql"
 
   create_table "tweets", force: :cascade do |t|
-    t.string   "url"
-    t.string   "text"
-    t.integer  "classification", default: 0
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "tweet_id",         limit: 8
+    t.string   "tweet_url"
+    t.string   "tweet_text"
+    t.string   "user_name"
+    t.string   "user_handle"
+    t.string   "user_picture_url"
+    t.integer  "classification",             default: 0
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
 end

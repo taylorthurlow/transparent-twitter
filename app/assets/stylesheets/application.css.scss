@@ -20,6 +20,7 @@ $accent: #4b36cc;
 
 body {
   line-height: 1.3;
+  background-color: #bbb;
 }
 
 a {
@@ -32,11 +33,10 @@ a {
 }
 
 #content {
-	background-color: #bbb;
+	// background-color: #bbb;
 }
 
 .container {
-	height: 100%;
 	padding: 50px;
 }
 
@@ -63,6 +63,31 @@ a {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 0 50px;
+
+  &-user-info {
+    height: 48px;
+
+    img {
+      float: left;
+    }
+
+    &-text {
+      display: inline-block;
+      height: 100%;
+      line-height: 24px;
+      padding-left: 10px;
+
+      &-alt {
+        color: gray;
+      }
+    }
+  }
+
+  &-tweet-text {
+    margin: 50px 0;
+    max-width: 75%;
+  }
 
   &-options a {
     margin-left: 15px;

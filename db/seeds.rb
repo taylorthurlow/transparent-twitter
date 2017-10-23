@@ -7,9 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 50.times do
+  user_name = Faker::RickAndMorty.character
   Tweet.create!({
-    url: 'http://example.com/',
-    text: Faker::RickAndMorty.quote,
+    tweet_id: rand(1..1000000000),
+    tweet_url: 'http://example.com/',
+    tweet_text: Faker::RickAndMorty.quote,
+    user_name: user_name,
+    user_handle: user_name.downcase.parameterize,
+    user_picture_url: 'http://placehold.it/48x48',
     classification: 0
   })
 end

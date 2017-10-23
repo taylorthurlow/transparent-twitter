@@ -30,6 +30,10 @@ gem 'normalize-rails'
 gem 'faker', git: 'https://github.com/stympy/faker'
 # Cool font icons
 gem 'font-awesome-rails'
+# use twitter api
+gem 'twitter'
+# parse tweet text and autogenerate relevant links
+gem 'twitter-text'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

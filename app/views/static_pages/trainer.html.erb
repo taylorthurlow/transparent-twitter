@@ -1,6 +1,17 @@
 <div class="trainer fullscreen">
   <% if @tweet.present? %>
-    <p><%= @tweet.text %></p>
+    <div class="trainer-user-info">
+      <%= image_tag @tweet.user_picture_url %>
+      <div class="trainer-user-info-text">
+        <%= @tweet.user_name %> <br>
+        <div class="trainer-user-info-text-alt">
+          @<%= @tweet.user_handle %>
+        </div>
+      </div>
+    </div>
+    <div class="trainer-tweet-text">
+      <%= (Twitter::Autolink.auto_link @tweet.tweet_text).html_safe %>
+    </div>
     <div class="trainer-options">
       <%= link_to 'delete', @tweet, method: :delete %>
       <%= link_to 'news', tweet_path(@tweet, tweet: {classification: 'news'}), method: :put %>
