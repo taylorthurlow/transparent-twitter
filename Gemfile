@@ -34,6 +34,8 @@ gem 'font-awesome-rails'
 gem 'twitter'
 # parse tweet text and autogenerate relevant links
 gem 'twitter-text'
+# dotenv configuration
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -42,8 +44,6 @@ group :development, :test do
   gem 'guard'
   gem 'guard-minitest'
   gem 'guard-livereload', '2.3.0', require: false
-  # dotenv configuration
-  gem 'dotenv-rails'
 end
 
 group :development do

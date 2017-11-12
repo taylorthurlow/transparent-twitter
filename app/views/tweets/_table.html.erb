@@ -13,7 +13,7 @@
       <% tweets.each do |tweet| %>
         <tr>
           <td><%= tweet.user_handle %></td>
-          <td><%= tweet.tweet_text %></td>
+          <td><%= (Twitter::Autolink.auto_link tweet.tweet_text).html_safe %></td>
           <td><%= tweet.classification %></td>
           <td><%= link_to '', tweet, method: :delete, class: 'fa fa-trash' %></td>
         </tr>
