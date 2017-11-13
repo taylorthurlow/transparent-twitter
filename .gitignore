@@ -9,6 +9,8 @@
 /.bundle
 /vendor
 
+/coverage
+
 /log/*.log
 /tmp
 

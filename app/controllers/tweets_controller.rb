@@ -22,7 +22,7 @@ class TweetsController < ApplicationController
   def create_training_data
     client = twitter_init
     search = client.search('', lang: 'en', geocode: '34.057565,-117.820741,10mi', tweet_mode: 'extended').take(10)
-    search.each {|t| Tweet.batch_factory(t)}
+    search.each { |t| Tweet.batch_factory(t) }
     redirect_to tweets_url
   end
 
@@ -42,22 +42,22 @@ class TweetsController < ApplicationController
 
   private
 
-    def twitter_init
-      return Twitter::REST::Client.new do |config|
-        config.consumer_key = ENV['SECRET_CONSUMER_KEY']
-        config.consumer_secret = ENV['SECRET_CONSUMER_SECRET']
-        config.access_token = ENV['SECRET_ACCESS_TOKEN']
-        config.access_token_secret = ENV['SECRET_ACCESS_TOKEN_SECRET']
-      end
+  def twitter_init
+    return Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV['SECRET_CONSUMER_KEY']
+      config.consumer_secret = ENV['SECRET_CONSUMER_SECRET']
+      config.access_token = ENV['SECRET_ACCESS_TOKEN']
+      config.access_token_secret = ENV['SECRET_ACCESS_TOKEN_SECRET']
     end
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tweet_params
-      params.require(:tweet).permit(:tweet_id, :tweet_url, :tweet_text, :user_name, :user_handle, :user_picture_url, :classification)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def tweet_params
+    params.require(:tweet).permit(:tweet_id, :tweet_url, :tweet_text, :user_name, :user_handle, :user_picture_url, :classification)
+  end
 end
