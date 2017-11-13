@@ -1,3 +1,12 @@
+require 'simplecov'
+
+unless ENV['NO_COVERAGE']
+  SimpleCov.start :rails do
+    add_filter '/vendor/assets'
+    add_filter '/vendor/ruby'
+  end
+end
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
