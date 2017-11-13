@@ -8,9 +8,9 @@ class Tweet < ActiveRecord::Base
 
   def self.batch_factory(tweet)
     json = tweet.as_json
-    retweeted = !json['retweeted_status'].nil?
+    # retweeted = !json['retweeted_status'].nil?
 
-    unless tweet.possibly_sensitive?# or retweeted
+    unless tweet.possibly_sensitive? # or retweeted
       return Tweet.create!(
         tweet_id: tweet.id,
         tweet_url: tweet.uri.to_s,
@@ -21,7 +21,7 @@ class Tweet < ActiveRecord::Base
         classification: 0
       )
     end
-  rescue ActiveRecord::RecordInvalid => exception
-    # doesn't matter, we'll just skip it
+  rescue ActiveRecord::RecordInvalid
+    logger.info "Failed to create tweet with id: #{tweet.id}. Ignoring."
   end
 end

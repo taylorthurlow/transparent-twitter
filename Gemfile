@@ -41,8 +41,8 @@ group :development, :test do
   gem 'byebug'
   # Make tests auto-run when changing files
   gem 'guard'
-  gem 'guard-minitest'
   gem 'guard-livereload', '2.3.0', require: false
+  gem 'guard-minitest'
 end
 
 group :test do
