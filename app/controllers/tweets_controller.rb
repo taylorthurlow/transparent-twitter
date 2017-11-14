@@ -1,12 +1,18 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:update, :destroy]
   respond_to :html, :json
+  respond_to :csv, only: [:export_csv]
 
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all.unclassified.sort
+    @tweets = Tweet.unclassified.sort
     respond_with @tweets
+  end
+
+  def export_csv
+    @tweets = Tweet.all.classified.sort
+    send_data Tweet.to_csv, filename: "tweets-#{Date.today}.csv"
   end
 
   # POST /tweets
@@ -21,7 +27,8 @@ class TweetsController < ApplicationController
   # GET /create_training_data.json
   def create_training_data
     client = twitter_init
-    search = client.search('', lang: 'en', geocode: '34.057565,-117.820741,10mi', tweet_mode: 'extended').take(10)
+    # search = client.search('', lang: 'en', geocode: '34.057565,-117.820741,10mi', tweet_mode: 'extended').take(10)
+    search = client.search(params[:data][:search_query], lang: 'en', tweet_mode: 'extended').take(params[:data][:number].to_i)
     search.each { |t| Tweet.batch_factory(t) }
     redirect_to tweets_url
   end

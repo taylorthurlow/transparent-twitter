@@ -27,5 +27,11 @@ module TransparentTwitter
 
     # use respond_with from responders gem in scaffold generation
     config.app_generators.scaffold_controller :responders_controller
+
+    Apollo::Bot.configure do |config|
+        config.username = ENV['IBM_USERNAME']
+        config.password = ENV['IBM_PASSWORD']
+        config.base_uri = "https://gateway.watsonplatform.net/natural-language-classifier/api"
+    end
   end
 end

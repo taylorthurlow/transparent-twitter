@@ -1,10 +1,42 @@
 <div class="container">
   <h1>Tweets</h1>
 
-  <%= link_to 'get 10 more tweets', create_training_data_url %> <br><br><br>
-
   <% if flash[:notice] %>
     <p id="notice"><%= flash[:notice] %></p>
+  <% end %>
+
+  <!-- <div class="form-medium">
+    <%= form_for :classifier, url: 'create_classifier' do |f| %>
+      <div class="field">
+        <%= f.label 'csv url' %>
+        <%= f.text_field :dl_url %>
+      </div>
+
+      <div class="field">
+        <%= f.label 'name' %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div> -->
+
+  <%#= link_to 'get csv tweets', export_csv_url %> <br>
+
+  <%= form_for :data, url: 'create_training_data', method: :get do |f| %>
+    <div class="field">
+      <%= f.label :search_query %>
+      <%= f.text_field :search_query, size: 50 %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'how many tweets' %>
+      <%= f.text_field :number, size: 50, placeholder: 'actual amount will be less due to filters' %>
+    </div>
+
+    <div class="actions"><%= f.submit "get tweets" %></div> <br><br><br>
   <% end %>
 
   <%= render partial: 'tweets/table', locals: { tweets: @tweets } %>

@@ -35,6 +35,8 @@ gem 'twitter'
 gem 'twitter-text'
 # dotenv configuration
 gem 'dotenv-rails'
+# watson API
+gem 'apollo-bot'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
