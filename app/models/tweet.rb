@@ -11,40 +11,16 @@ class Tweet < ActiveRecord::Base
   def self.to_csv
     CSV.generate do |csv|
       Tweet.classified.each do |tweet|
-        csv << [tweet.tweet_text.gsub("\n", ' '), tweet.classification]
+        csv << [tweet.tweet_text.tr("\n", ' '), tweet.classification]
       end
     end
   end
-
-  # {
-  #   "natural_language_classifier": [
-  #     {
-  #       "name": "nlc-transparent-twitter-natural-la-1510644211970",
-  #       "plan": "standard",
-  #       "credentials": {
-  #         "url": "https://gateway.watsonplatform.net/natural-language-classifier/api",
-  #         "username": "6266fe93-4c95-489d-9a89-30ecd524e962",
-  #         "password": "aJJwR741jZ81"
-  #       }
-  #     }
-  #   ]
-  # }
-  #
-  # {
-  #   "classifier_id" : "9ddbcfx239-nlc-18292",
-  #   "name" : "TweetClassifier",
-  #   "language" : "en",
-  #   "created" : "2017-11-14T07:38:38.822Z",
-  #   "url" : "https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers/9ddbcfx239-nlc-18292",
-  #   "status" : "Training",
-  #   "status_description" : "The classifier instance is in its training phase, not yet ready to accept classify requests"
-  # }%
 
   def self.batch_factory(tweet)
     json = tweet.as_json
     retweeted = !json['retweeted_status'].nil?
 
-    unless tweet.possibly_sensitive? or retweeted
+    unless tweet.possibly_sensitive? || retweeted
       return Tweet.create!(
         tweet_id: tweet.id,
         tweet_url: tweet.uri.to_s,
@@ -57,5 +33,47 @@ class Tweet < ActiveRecord::Base
     end
   rescue ActiveRecord::RecordInvalid
     logger.info "Failed to create tweet with id: #{tweet.id}. Ignoring."
+  end
+
+  def self.client_init
+    return Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV['SECRET_CONSUMER_KEY']
+      config.consumer_secret = ENV['SECRET_CONSUMER_SECRET']
+      config.access_token = ENV['SECRET_ACCESS_TOKEN']
+      config.access_token_secret = ENV['SECRET_ACCESS_TOKEN_SECRET']
+    end
+  end
+
+  def self.check_user(user, num_tweets = 200)
+    list = Tweet.build_tweet_list(user, num_tweets)
+    response = Tweet.check_tone(list)
+    puts response['document_tone']
+  end
+
+  def self.build_tweet_list(user, num_tweets = 200)
+    tweets = Tweet.client_init.user_timeline(user, count: num_tweets, tweet_mode: 'extended')
+    return tweets.map { |t| t.attrs[:full_text] }.join("\n").gsub(/[\u0080-\u00ff]/, '')
+  end
+
+  def self.check_tone(text_body)
+    response = RestClient::Request.new(
+      method: :post,
+      url: 'https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone',
+      user: ENV['IBM_USERNAME'],
+      password: ENV['IBM_PASSWORD'],
+      payload: text_body,
+      # payload: ERB::Util.url_encode(text_body),
+      headers: {
+        content_type: 'text/plain',
+        params: {
+          version: '2017-09-21',
+          sentences: false
+        }
+      }
+    ).execute
+
+    return JSON.parse(response)
+  rescue RestClient::ExceptionWithResponse => err
+    puts "REQUEST TO WATSON API FAILED: #{err}"
   end
 end

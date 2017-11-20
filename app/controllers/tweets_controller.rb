@@ -26,9 +26,7 @@ class TweetsController < ApplicationController
   # GET /create_training_data
   # GET /create_training_data.json
   def create_training_data
-    client = twitter_init
-    # search = client.search('', lang: 'en', geocode: '34.057565,-117.820741,10mi', tweet_mode: 'extended').take(10)
-    search = client.search(params[:data][:search_query], lang: 'en', tweet_mode: 'extended').take(params[:data][:number].to_i)
+    search = Tweet.client_init.search(params[:data][:search_query], lang: 'en', tweet_mode: 'extended').take(params[:data][:number].to_i)
     search.each { |t| Tweet.batch_factory(t) }
     redirect_to tweets_url
   end
@@ -48,15 +46,6 @@ class TweetsController < ApplicationController
   end
 
   private
-
-  def twitter_init
-    return Twitter::REST::Client.new do |config|
-      config.consumer_key = ENV['SECRET_CONSUMER_KEY']
-      config.consumer_secret = ENV['SECRET_CONSUMER_SECRET']
-      config.access_token = ENV['SECRET_ACCESS_TOKEN']
-      config.access_token_secret = ENV['SECRET_ACCESS_TOKEN_SECRET']
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_tweet
