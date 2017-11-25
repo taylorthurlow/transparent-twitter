@@ -1,0 +1,18 @@
+<div class="container feed-columns">
+  <div class="user-info">
+    <div class="user-info--image"><%= image_tag @user.profile_image_url.to_s %></div>
+    <div class="user-info--names">
+      <div class="user-info--names__name"><%= @user.name %></div>
+      <div class="user-info--names__screen_name">@<%= @user.screen_name %></div>
+    </div>
+  </div>
+  <div class="friend-list">
+    <%= @friends.each do |friend| %>
+      <div class="friend-list--friend">
+        <div class="friend-list--friend__name"><%= friend.name %></div>
+        <div class="friend-list--friend__screen_name">@<%= friend.screen_name %></div>
+        <div class="friend-list--friend__analyze">(<%= link_to 'analyze', analyze_user_path(friend.id) %>)</div>
+      </div>
+    <% end %>
+  </div>
+</div>

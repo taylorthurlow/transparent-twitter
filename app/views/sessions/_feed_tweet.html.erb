@@ -1,0 +1,8 @@
+<div class="feed-tweet">
+  <div class="feed-tweet--header">
+    <div class="feed-tweet--header__name"><%= tweet.user.name %></div>
+    <div class="feed-tweet--header__screen_name">@<%= tweet.user.screen_name %></div>
+    <div class="feed-tweet--header__age"><%= distance_of_time_in_words(Time.parse(tweet.created_at)) %> ago</div>
+  </div>
+  <div class="feed-tweet--text"><%= auto_link tweet.attrs[:full_text] %></div>
+</div>

@@ -78,6 +78,92 @@ nav {
 	background-color: #bbb;
 }
 
+.feed-columns {
+  display: flex;
+
+  .user-info {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+
+    &--image {
+    }
+
+    &--names {
+      margin-left: 10px;
+
+      &__name {
+        font-size: 20px;
+      }
+
+      &__screen_name {
+        color: #333;
+      }
+    }
+  }
+
+  .friend-list {
+    &--friend {
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+
+      &__name {
+        display: inline-block;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      &__screen_name {
+        display: inline-block;
+        color: #444;
+        margin-right: 10px;
+      }
+
+      &__analyze {
+
+      }
+    }
+  }
+
+  .feed {
+    width: 70%;
+
+    &-tweet {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      &--header {
+
+        &__name {
+          display: inline-block;
+          font-weight: bold;
+        }
+
+        &__screen_name {
+          display: inline-block;
+          color: #444;
+        }
+
+        &__age {
+          display: inline-block;
+        }
+      }
+
+      &--text {
+
+      }
+    }
+  }
+}
+
+
+
+
+
 .tweet-input {
 	height: 100%;
 	display: flex;

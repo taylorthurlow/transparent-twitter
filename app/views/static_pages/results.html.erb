@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="results">
+    <% @results['tones'].each do |tone| %>
+      <p><%= tone['tone_name'] %>: <%= tone['score'] %></p>
+    <% end %>
+  </div>
+</div>
