@@ -1,7 +1,6 @@
 class WatsonController < ApplicationController
   def analyze_user
     result = check_user(params[:id].to_i)
-    debugger
     redirect_to results_path(results: result)
   end
 
@@ -14,7 +13,7 @@ class WatsonController < ApplicationController
   end
 
   def build_tweet_list(user, num_tweets = 200)
-    tweets = twitter_client.user_timeline(user, count: num_tweets, tweet_mode: 'extended')
+    tweets = current_user.twitter.user_timeline(user, count: num_tweets, tweet_mode: 'extended')
     return tweets.map { |t| t.attrs[:full_text] }.join("\n").gsub(/[\u0080-\u00ff]/, '')
   end
 

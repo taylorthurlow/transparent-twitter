@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker
-  revision: f9f0b1c4aab58ee84d701e303f6f5a95f5ded369
+  revision: c972b0d791dd99d45058ba4fe625dbd27bb3fbe0
   specs:
     faker (1.8.4)
       i18n (~> 0.5)
@@ -179,7 +179,7 @@ GEM
     public_suffix (3.0.1)
     puma (3.11.0)
     rack (1.6.8)
-    rack-mini-profiler (0.10.6)
+    rack-mini-profiler (0.10.7)
       rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)

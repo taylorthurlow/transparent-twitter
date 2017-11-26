@@ -1,28 +1,18 @@
 class SessionsController < ApplicationController
   def create
-    credentials = request.env['omniauth.auth']['credentials']
-    session[:access_token] = credentials['token']
-    session[:access_token_secret] = credentials['secret']
-    redirect_to show_path, notice: 'Signed in'
-  end
-
-  def show
-    if session['access_token'] && session['access_token_secret']
-      @user = twitter_client.user(include_entities: true)
-      @friends = @client.friends
-    else
-      redirect_to failure_path
-    end
-    console
-  end
-
-  def error
-    flash[:error] = 'Sign in with Twitter failed'
-    redirect_to root_path
+    @user = User.find_or_create_from_auth_hash(auth_hash)
+    session[:user_id] = @user.id
+    redirect_to root_path, notice: 'Signed in'
   end
 
   def destroy
     reset_session
     redirect_to root_path, notice: 'Signed out'
+  end
+
+  protected
+
+  def auth_hash
+    request.env['omniauth.auth']
   end
 end

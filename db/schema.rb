@@ -11,21 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171022233624) do
+ActiveRecord::Schema.define(version: 20171126201004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "tweets", force: :cascade do |t|
-    t.integer  "tweet_id",         limit: 8
-    t.string   "tweet_url"
-    t.string   "tweet_text"
-    t.string   "user_name"
-    t.string   "user_handle"
-    t.string   "user_picture_url"
-    t.integer  "classification",             default: 0
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+  create_table "twitter_users", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "name"
+    t.string   "screen_name"
+    t.string   "profile_image"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
+  add_index "twitter_users", ["user_id"], name: "index_twitter_users_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "profile_image"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_foreign_key "twitter_users", "users"
 end

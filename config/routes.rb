@@ -7,12 +7,10 @@ Rails.application.routes.draw do
   get 'profile' => 'sessions#show', as: 'show'
   get 'signout' => 'sessions#destroy', as: 'signout'
 
+  # user
+  get 'reindex_friends' => 'users#reindex_friends'
+
   # watson
   get 'analyze/:id' => 'watson#analyze_user', as: 'analyze_user'
   get 'results' => 'static_pages#results', as: 'results'
-
-  # tweets
-  resources :tweets, only: [:index, :create, :update, :destroy]
-  get 'create_training_data' => 'tweets#create_training_data'
-  get 'export_csv' => 'tweets#export_csv'
 end

@@ -11,6 +11,11 @@
   <nav>
     <ul>
       <li><%= link_to 'home', root_url %></li>
+      <% if current_user %>
+        <li><%= current_user.name %></li>
+      <% else %>
+        <li><%= link_to 'Log in', 'auth/twitter' %></li>
+      <% end %>
     </ul>
   </nav>
 
