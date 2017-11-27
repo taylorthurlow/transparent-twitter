@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  provider: MyString
+  uid: 123123123
+  name: MyString
+  token: MyString
+  secret: MyString
+  profile_image: https://placehold.it/10x10
+
+two:
+  provider: MyString
+  uid: 12312313123
+  name: MyString
+  token: MyString
+  secret: MyString
+  profile_image: https://placehold.it/10x10

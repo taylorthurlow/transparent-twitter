@@ -3,10 +3,8 @@ class StaticPagesController < ApplicationController
 
   def home; end
 
-  def trainer
-    unclassified = Tweet.unclassified
-    return unless unclassified.any?
-    @tweet = unclassified.offset(rand(unclassified.count)).first
-    respond_with @tweet
+  def results
+    @results = params[:results]
+    @twitter_user = TwitterUser.find(params[:twitter_user_id])
   end
 end
