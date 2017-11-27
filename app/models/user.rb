@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_from_auth_hash(auth_hash)
     user = where(provider: auth_hash[:provider], uid: auth_hash[:uid]).first_or_create
-    IndexFriendsService.new(current_user.id).call unless user.twitter_users.any?
     user.update(
       name: auth_hash.info.name,
       screen_name: auth_hash.info.nickname,
