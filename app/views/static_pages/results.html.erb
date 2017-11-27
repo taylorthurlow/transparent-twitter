@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Analysis Results: <%= @twitter_user.name %> (@<%= @twitter_user.screen_name %>)</h2>
+  <div class="results">
+    <%= generate_chartkick @results['tones'] %>
+  </div>
+  <div style="text-align: center; margin-top: 30px;">
+    <%= link_to 'Go back home', root_url %>
+  </div>
+</div>
+
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
