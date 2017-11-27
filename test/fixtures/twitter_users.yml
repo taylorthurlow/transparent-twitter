@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  uid: MyString
+  uid: 1234512345
   name: MyString
   screen_name: MyString
-  profile_image: MyString
+  profile_image: https://placehold.it/10x10
 
 two:
-  uid: MyString
+  uid: 12341235145
   name: MyString
   screen_name: MyString
-  profile_image: MyString
+  profile_image: https://placehold.it/10x10

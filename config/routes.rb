@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   get 'signout' => 'sessions#destroy', as: 'signout'
 
   # user
+  resources 'users', only: [:create, :update, :destroy]
   get 'reindex_friends' => 'users#reindex_friends'
+
+  # twitter_users
+  resources 'twitter_users', only: [:create, :update, :destroy]
 
   # watson
   get 'analyze/:id' => 'watson#analyze_user', as: 'analyze_user'

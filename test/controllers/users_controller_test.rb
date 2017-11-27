@@ -5,37 +5,30 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:users)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { name: @user.name, profile_image: @user.profile_image, provider: @user.provider, secret: @user.secret, token: @user.token, uid: @user.uid }
+      post :create, user: {
+        name: @user.name,
+        profile_image: @user.profile_image,
+        provider: @user.provider,
+        secret: @user.secret,
+        token: @user.token,
+        uid: @user.uid
+      }
     end
 
     assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should show user" do
-    get :show, id: @user
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @user
-    assert_response :success
-  end
-
   test "should update user" do
-    patch :update, id: @user, user: { name: @user.name, profile_image: @user.profile_image, provider: @user.provider, secret: @user.secret, token: @user.token, uid: @user.uid }
+    patch :update, id: @user, user: {
+      name: @user.name,
+      profile_image: @user.profile_image,
+      provider: @user.provider,
+      secret: @user.secret,
+      token: @user.token,
+      uid: @user.uid
+    }
     assert_redirected_to user_path(assigns(:user))
   end
 
