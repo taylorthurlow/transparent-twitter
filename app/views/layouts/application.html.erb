@@ -12,7 +12,7 @@
     <ul>
       <li><%= link_to 'home', root_url %></li>
       <% if current_user %>
-        <li><%= current_user.name %></li>
+        <li><%= link_to 'Sign out', signout_url %></li>
       <% else %>
         <li><%= link_to 'Log in', 'auth/twitter' %></li>
       <% end %>
