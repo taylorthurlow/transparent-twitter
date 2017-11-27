@@ -1,7 +1,7 @@
 class WatsonController < ApplicationController
   def analyze_user
     result = check_user(params[:id].to_i)
-    redirect_to results_path(results: result)
+    redirect_to results_path(results: result, twitter_user_id: params[:twitter_user_id])
   end
 
   private

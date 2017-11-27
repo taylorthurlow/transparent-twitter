@@ -5,5 +5,6 @@ class StaticPagesController < ApplicationController
 
   def results
     @results = params[:results]
+    @twitter_user = TwitterUser.find(params[:twitter_user_id])
   end
 end

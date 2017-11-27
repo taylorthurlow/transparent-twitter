@@ -1,22 +1,24 @@
-<div class="container feed-columns">
-  <% if current_user %>
-    <div class="user-info">
-      <div class="user-info--image"><%= image_tag current_user.profile_image %></div>
-      <div class="user-info--names">
-        <div class="user-info--names__name"><%= current_user.name %></div>
+<% if current_user %>
+  <div class="container feed-columns">
+    <div class="sidebar">
+      <div class="user-info">
+        <div class="user-info--image"><%= image_tag current_user.profile_image %></div>
+        <div class="user-info--names">
+          <div class="user-info--names__name"><%= current_user.name %></div>
+          <div class="user-info--names__screenname">@<%= current_user.screen_name %></div>
+        </div>
       </div>
-      <div class="user-info--index"><%= link_to 'index friends', reindex_friends_path %></div>
+      <div class="sidebar-text">
+        A list of the Twitter users you follow is to the right. Select any of them to start an analysis of their tweets. The analysis will be based on the user's 200 most recent tweets. The system will determine the tone of the tweets and rank them on a scale of 1 to 10. You can also trigger a refresh by clicking "refresh friends" at the top right. Do this if you've recently followed someone that you don't see in the list.
+      </div>
     </div>
     <div class="friend-list">
-      <% current_user.twitter_users.order(:name).each do |friend| %>
-        <div class="friend-list--friend">
-          <div class="friend-list--friend__name"><%= friend.name %></div>
-          <div class="friend-list--friend__screen_name">@<%= friend.screen_name %></div>
-          <div class="friend-list--friend__analyze">(<%= link_to 'analyze', analyze_user_path(friend.uid) %>)</div>
-        </div>
-      <% end %>
+      <%= render partial: 'twitter_user', collection: current_user.twitter_users.order(:name) %>
     </div>
-  <% else %>
-    <p>Hi! Sign in at the top-right.</p>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="logo"></div>
+    <p style="margin: 30px 20% 0">Hi! We can help weed out the downers in your Twitter feed. Sign in at the top right, and we'll give you a breakdown of the user's recent emotions.</p>
+  </div>
+<% end %>

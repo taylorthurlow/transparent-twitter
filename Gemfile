@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'chartkick'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'dotenv-rails'
 gem 'faker', git: 'https://github.com/stympy/faker'
