@@ -1,6 +1,6 @@
 class WatsonController < ApplicationController
   def analyze_user
-    result = check_user(params[:id].to_i)
+    result = check_user(params[:id])
     redirect_to results_path(results: result, twitter_user_id: params[:twitter_user_id])
   end
 
@@ -13,7 +13,8 @@ class WatsonController < ApplicationController
   end
 
   def build_tweet_list(user, num_tweets = 200)
-    tweets = current_user.twitter.user_timeline(user, count: num_tweets, tweet_mode: 'extended')
+    id = integer_string(user) ? user.to_i : user
+    tweets = current_user.twitter.user_timeline(id, count: num_tweets, tweet_mode: 'extended')
     return tweets.map { |t| t.attrs[:full_text] }.join("\n").gsub(/[\u0080-\u00ff]/, '')
   end
 
@@ -36,5 +37,9 @@ class WatsonController < ApplicationController
     return JSON.parse(response)
   rescue RestClient::ExceptionWithResponse => err
     puts "REQUEST TO WATSON API FAILED: #{err}"
+  end
+
+  def integer_string(string)
+    return string.scan(/\D/).empty?
   end
 end

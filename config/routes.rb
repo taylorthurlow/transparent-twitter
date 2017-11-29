@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources 'twitter_users', only: [:create, :update, :destroy]
 
   # watson
-  get 'analyze/:id' => 'watson#analyze_user', as: 'analyze_user'
+  get 'analyze' => 'watson#analyze_user', as: 'analyze_user'
   get 'results' => 'static_pages#results', as: 'results'
 end

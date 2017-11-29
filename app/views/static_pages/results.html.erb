@@ -1,5 +1,7 @@
 <div class="container">
-  <h2>Analysis Results: <%= @twitter_user.name %> (@<%= @twitter_user.screen_name %>)</h2>
+  <% if @twitter_user %>
+    <h2>Analysis Results: <%= @twitter_user.name %> (@<%= @twitter_user.screen_name %>)</h2>
+  <% end %>
   <div class="results">
     <%= generate_chartkick @results['tones'] %>
   </div>
