@@ -3,7 +3,6 @@
 <p align="center">a small web application which uses IBM's watson to determine the linguistic tone of the people you follow on Twitter</p>
 
 ## Deployment instructions
------
 ### Prerequisites
 * A recent version of `ruby`, 2.0 or later will 'probably' work, we used `2.3.1`
 * A functioning, local installation of `PostgreSQL` that your local user account has read/modify priveleges for
@@ -23,5 +22,5 @@
 6. Run the Rails server using: `bundle exec rails server`
 7. Use the app at `http://localhost:3000/`
 
-### Deploying to a 3rd party:
-  Deploying to a 3rd party service like Heroku is generally as simple as configuring the aforementioned environment variables through the provided web configuration interface, also ensuring that the service is set to use PostgreSQL as the database.
+### Deploying to a 3rd party
+Deploying to a 3rd party service like Heroku is generally as simple as configuring the aforementioned environment variables through the provided web configuration interface, also ensuring that the service is set to use PostgreSQL as the database. Your mileage may vary.
